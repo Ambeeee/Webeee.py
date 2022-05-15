@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <!--Titolo-->
+    <title>{% block title %}  {% endblock %} - Webeee2.0</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/posts/proj-img/logo.png') }}" type="image/png">
+    
+    <!--Script-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{  url_for('static', filename='style.css')  }}">
+    <script type="text/javascript" src="{{  url_for('static', filename='action.js')  }}"></script>
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&amp;display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+
+</head>
+<body class="body">
+    
+    <!--MENU-->
+    <div class="menuSec">
+        <img src="{{ url_for('static', filename='img/posts/proj-img/logo.png') }}"
+            id="logo" class="img-proj" type="image/png" title="Apri il menu" onclick="ApriMenu()" ondblclick="DM()" ondrag="login()">
+
+        <div id="menu" style="display: none">
+            <a href="{{ url_for('homepage') }}" class="tab {% if request.path == '/' %} active {% endif%}" title="torna alla pagina iniziale">Home</a>
+
+            <a href="{{ url_for('newsPres') }}" class="tab {% if request.path == '/newsPres' %} active {% endif%}" title="vai alle notizie">News</a>
+
+            <a href="{{ url_for('gallery') }}" class="tab {% if request.path == '/gallery' %} active {% endif%}" title="vai alla gallery">Gallery</a>
+
+            <a href="{{ url_for('cit') }}" class="tab {% if request.path == '/citazioni' %} active {% endif%}" title="Scopri le perle">WikiPres</a>
+
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('crea') }}" class="tab{% if request.path == '/crea' %} active {% endif%}" title="crea qualcosa">Crea</a>
+            <a href="{{ url_for('logout') }}" class="tab {% if request.path == '/logout' %} active {% endif%}" title="effettua il Logout">Logout</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+</body>
+</html>

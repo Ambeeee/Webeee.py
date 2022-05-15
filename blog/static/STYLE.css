@@ -1,0 +1,576 @@
+/*GENERALE*/
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+:root{
+    --ambeee: #ffab40;
+    --darkeee: #d9800b;;
+    --ambeShadow: #b87711;
+    --bluelectric: #091fea;
+    --electricShadow: #040484;
+    --red: #ff3737;
+    --redShadow: #8f1111;
+    --grey: #303030;
+    --first: black;
+    --second: white;
+    --link: #13FF22;
+    --Light: 100%;
+}
+
+
+
+
+/*DARK*/
+.Dm{
+    --first:white;
+    --second:black;
+    --ambeee: var(--darkeee);
+    --Light: 90%;
+}
+.body{
+    background-color: var(--second);
+    margin: 0;
+    height: 100%;
+}
+.img-proj{
+    filter: brightness(var(--Light));
+}
+
+
+
+
+/*SCROLLBAR*/
+::-webkit-scrollbar{
+    background-color: var(--second);
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--ambeee);
+    border-radius: 20px;
+    transition: 2.0s;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: var(--ambeShadow);
+}
+
+
+/*MENU*/
+.menuSec{
+    width: 90%;
+    height: 5%;
+    margin: 2% 5%;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    z-index: 2;
+}
+
+#menu{
+    width: 90%;
+    margin: 1% 5%;
+    padding: 0 2%;
+    justify-content: end;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+/*HOME*/
+
+.webeee{
+    width: 55%;
+    margin: -11% 0% 0% 7%;
+    position: absolute;
+    z-index: 2;
+}
+
+
+.Descrizione{
+    margin: 5% 0;
+    width: 90%;
+
+    overflow: hidden;
+    position: sticky;
+
+    font-family: "Roboto Mono";
+    color:var(--first);
+    font-size: 20px;
+    text-align: justify;
+}
+
+
+.TitoloSez{
+    margin: 5% auto;
+}
+
+
+
+.label{
+    width: 5%;
+    margin: 1% 1%; 
+    font-size: 25px;
+    font-family: 'Itim';
+}
+.others{
+    width: 100%;
+    margin: 5% auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    
+}
+.ricordami{
+    margin: 0 5%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*TESTO*/
+.T-titolo{
+    color: var(--bluelectric);
+    font-size: 60px;
+    text-shadow: 0px 0px 15px white;
+    text-align: center;
+    font-family: 'Permanent Marker';
+}
+.T-sez{
+    color: var(--bluelectric);
+    margin: 5% 0%;
+    font-size: 100px;
+    text-shadow: 0px 0px 15px var(--second);
+    text-align: center;
+    font-family: 'Permanent Marker';
+}
+.T-art{
+    width: 75%;
+    margin: 5% auto;
+    margin-top: -5%;
+
+    font-size: 100px;
+    color: var(--first);
+    font-family: 'Shelman', cursive;
+    font-weight: normal;
+    text-transform: capitalize;
+    text-align: center;
+}
+.T-tab{
+    width: 100%;
+    margin: 5% 0%;
+    
+    font-family: "Itim";
+    font-weight: bold;
+    font-size: 150%;
+    text-align: center;
+}
+.T-info{
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Itim';
+    color: black;
+}
+.T-err{
+    color: var(--red);
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0px 0px 3px var(--second);
+}
+.t-info{
+    margin: 5% 0%;
+    font-size: 25px;
+    font-family: 'Itim';
+    font-style: oblique;
+    color: var(--first);
+}
+.testo{
+    width: 90%;
+    min-width: 400px;
+    margin: 0 5%;
+    padding: 0% 0;
+    color: var(--first);
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.tCent{
+    text-align: center;
+}
+
+
+
+
+/*COMPONENTI*/
+.pagina{
+    height: auto;
+    padding: 5% 0%;
+
+    position: static;
+    background-color: var(--ambeee);
+    display: flex;
+    flex-direction: column;
+}
+.pSfondo{
+    padding: 50% 0 5% 0;
+    margin: -20% 0% 0% 0%;
+}
+.popup{
+    width:  100%;
+    height: 50%;
+    margin: 0% 0;
+    padding: 15% 0;
+    position: absolute;
+    background-color: var(--ambeee);
+    opacity: 95%;
+    transition:  1s;
+}
+.container{
+    padding: 2%;
+    display: flex;
+}
+.box{
+    width: 70%;
+    margin: 5% auto;
+    padding: 2%;
+
+    color: var(--first);
+    border-radius: 25px;
+    background-color: var(--second);
+
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.tab{
+    width: 100%;
+    max-width: 150px;
+    min-width: 70px;
+    margin: 0% 10px;
+    padding: 0 1%;
+
+    background-color: var(--second);
+    border-radius: 25px;
+    font-size: 20px;
+    
+    font-size: 20px;
+    color: var(--first);
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Permanent Marker', cursive;
+    transition: 0.5s;
+}
+.tab:hover{
+    transform: scale(1.05);
+    color: var(--ambeee);
+    background-color: var(--grey);
+}
+.intro{ 
+    width: 60%;
+    margin: 2% auto;
+    margin-top: -20%;
+    
+
+    position: absolute;
+    align-self: center;
+    cursor:pointer;
+    border-radius: 25px;
+
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 200%;
+    font-family: 'Goblin One', cursive;
+    transition: 1.5s;
+}
+.intro p{
+    margin: 2%;  
+}
+.intro:hover{
+    background-color: var(--second);
+    transform: scale(1.02);
+    color: var(--first);
+}
+.bar{
+    width: 80%;
+    max-width: 624px;
+    min-width: 624px;
+    margin: 2% auto;
+    padding: 2%;
+    font-size: 20px;
+    color: var(--first);
+    font-family: 'Itim';
+    background-color: var(--second);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.newsImg img{
+    width: 50%;
+    min-width: 350px;
+    max-width: 450px;
+    margin: 5% 5% 5% 0;
+    
+    
+    position: sticky;
+    border-radius: 50px;
+}
+
+
+
+
+
+/*IMMAGINI*/
+.sfondo{
+    width: 100%;
+    margin: 0%;
+
+    position: sticky;
+    display: flex;
+    z-index: 0;
+}
+#logo{  
+    width: 5%;
+    position: fixed;
+    cursor: pointer;
+    transition: 0.5s;
+}
+#logo:hover{
+    transform: scale(1.05);
+}
+
+
+
+
+/*BOTTONI*/
+.btn{
+    min-width: 150px;
+    margin: 0 5%;
+    padding: 1% 10%;
+    font-size: 20px;
+    font-family: 'Itim';
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    color: var(--ambeee);
+    background-color: var(--bluelectric);
+    border-radius: 25px;
+    border: 0;
+    transition: 1.0s;
+}
+.btn:hover{
+    transform: scale(1.1);
+    color: var(--link);
+}
+.bAdd{
+    /* +btn*/
+    background-color: var(--link);
+    color: var(--bluelectric); 
+}
+.bAdd:hover{
+    color: var(--bluelectric);
+}
+.bDanger{
+    /* + btn*/
+    background-color: var(--red);
+    color: var(--link);
+}
+.bNoW{
+    background-color: var(--electricShadow);
+    color: var(--ambeShadow);
+}
+.bNoW:hover{
+    background-color: var(--electricShadow);
+    color: var(--ambeShadow);
+    transform: scale(1);
+}
+
+
+
+
+/*LINK*/
+.link{
+    color: var(--grey);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 1s;
+}
+.link:hover{
+    color: var(--ambeee);
+}
+.link:visited{
+    color: var(--grey);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 1s; 
+}
+.webeee {
+    color: var(--grey);
+    font-weight: bold;
+    font-family: 'Forte';
+    cursor: pointer;
+    transition: 0.5s;
+}
+.webeee:hover{
+    color: var(--ambeee);
+}
+.notWk{
+    color: var(--red);
+}
+.notWk:hover{
+    color: var(--red);
+}
+
+
+
+
+/*STILI*/
+.hoverable{
+    transition: 2.0s;
+    box-shadow: 5px 5px 0px var(--grey);
+}
+.hoverable:hover{
+    color: white;
+    background-color: var(--grey);
+    box-shadow: none;
+}
+.dNone{
+    display: none;
+
+}
+.dFlex{
+    display: flex;
+    
+}
+.oConcrete{
+    opacity: 100%;
+}
+
+
+
+/*COLORI*/
+.bAmbe{
+    background-color: var(--ambeee);
+}
+.bWhite{
+    background-color: var(--second);
+}
+
+
+
+/*POSIZIONI*/
+.wTotal{
+    width: 100%;
+}
+.w90{
+    width: 80%;
+}
+.w80{
+    width: 80%;
+}
+.wHalf{
+    width: 50%;
+}
+.w40{
+    width: 40%;
+}
+.w30{
+    width: 30%;
+}
+.w10{
+    width: 10%;
+}
+.centX{
+    justify-content: center;
+}
+.m50{
+    margin: 0 auto;
+}
+.mFrame{
+    margin: 2%;
+}
+.fRow{
+    flex-direction: row;
+}
+.fRowR{
+    flex-direction: row-reverse;
+}
+.fCol{
+    flex-direction: column;
+}
+.fColR{
+    flex-direction: column-reverse;
+}
+
+
+
+
+/*ARTICOLI*/
+body-text p{
+    font-size: 30px;
+    text-align: justify;
+    line-height: 40px;
+    color: var(--first);
+}
+#IlBodyDellArticolo{
+    margin-bottom: 2%;
+}
+.cover{
+    width: 40%;
+    margin: 5% 30%;
+    border-radius: 20px;
+}
+.Mark1{
+    width: 30%;
+    margin: -5% 0 0 -5%;
+}
+.intro-art{
+    margin: 2% auto;
+
+    text-align: center;
+    font-family: "Roboto Mono";
+    font-size: 25px;
+    color: var(--first);
+    font-style: italic;
+    line-height: 70px;
+}
+.date{
+    width: 25%;
+    margin: 0;
+    font-size: 25px;
+    font-family: "Roboto Mono";
+    color: var(--first);
+}
+.art-infos{
+    margin: 5% auto;
+    display: flex;
+    flex-direction: row;
+}
+.edit{
+    width: 30%;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: row;
+}
+#firma {
+    width: 4%;
+    bottom: 0%;
+    margin: 0% 48%;
+    position: fixed;
+    cursor: none;
+}
+

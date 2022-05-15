@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %} Gallery {% endblock %}
+
+{% block content %}
+
+
+<div class="pagina">
+
+    <div class="box bWhite  m50">
+        <div class="T-sez mFrame">Gallery</div>
+    </div>
+    
+    <br><br><br><br><br><br><br><br><br><br>
+    {% for folder in folders.items %}
+        <a href="{{url_for('album', post_slug=folder.slug) }}" class="box hoverable">
+            <div class="testo" style="margin: 0% 8%;">
+                <div class="T-tab">{{folder.title}}</div>
+
+                <p>{{ folder.created_at.strftime('%d.%m.%Y') }}</p>
+        
+                {% if folder.description %}
+                    <p class="t-info">{{folder.description}}</p>
+                {%endif%}
+            </div>
+            <div class="newsImg">
+                {% if folder.image %}
+                    <img src=" {{ url_for('static', filename='img/posts/' + folder.image) }} " alt="cover">
+                {% endif %}
+            </div>
+        </a>
+    {% endfor %} 
+    
+    <div class="container wHalf m50">
+    {% if previous_page or next_page %}    
+        {% if previous_page %}
+            {% if current_page == 2 %} <a class="btn" href="/gallery">Indietro</a><div class="btn bNoW">Avanti</div>
+            {% else %}} <a class="btn" href=" {{ previous_page }} ">Indietro</a><div class="btn bNoW">Avanti</div>{% endif %}
+        {% endif %}
+        {% if next_page %} <div class="btn bNoW">Indietro</div><a class="btn" href=" {{ next_page }} ">Avanti</a>{% endif %}
+    {% endif %}
+    </div>
+</div> 
+
+<img id="firma" src="{{ url_for('static', filename='img/posts/proj-img/Marchio2.png') }}">
+{% endblock %}

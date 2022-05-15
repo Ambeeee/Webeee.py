@@ -1,0 +1,35 @@
+{% extends'base.html' %}
+
+{% block title %}
+    Crea
+{% endblock %}
+
+{% block content %}
+<div class="popup">
+
+    <div class="container">
+        {% if current_user.role == "Boss" %}
+        <a href="{{ url_for('folder_create') }}"  class="box hoverable w30 mFrame">
+            <div class="T-titolo mFrame">Album Nella Gallery</div>
+        </a>{% endif %}
+
+        {% if current_user.role == "Boss" or current_user.role == "Writer" %}
+        <a href="{{ url_for('post_create') }}"  class="box hoverable w30 mFrame">
+            <div class="T-titolo mFrame">Nuovo Articolo</div>
+        </a>{% endif %}
+
+
+        {% if current_user.role == "Boss" or current_user.role == "Writer"
+            or current_user.role == "Testimonial" %}
+        <a href="{{ url_for('cit_create') }}"  class="box hoverable w30 mFrame">
+            <div class="T-titolo mFrame">Nuova Citazione</div>
+        </a>{% endif %}
+
+        {% if current_user.role == "Boss" %}
+        <a href="{{ url_for('user_create') }}"  class="box hoverable w30 mFrame">
+            <div class="T-titolo mFrame">Nuovo Account</div>
+        </a>{% endif %}
+    </div>
+    
+</div>
+{% endblock %}

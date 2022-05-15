@@ -1,0 +1,59 @@
+{% extends'base.html' %}
+
+{% block title %}Accedi{% endblock %}
+
+
+{% block content %}
+    <div class="box bAmbe  fCol wHalf">
+        <div class="sezione">
+            <h1 class="TitoloSez T-titolo">Login</h1>
+            
+            
+            <form method="POST" novalidate>
+                {{ form.hidden_tag() }} <!--csrf_token-->
+                <div class="bar-body">
+                    <p class="T-info">{{ form.username.label }}</p>
+                    {{ form.username(class="bar") }}
+                    {% if form.username.errors %}
+                        {% for error in form.username.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="bar-body">
+                    <p class="T-info">{{ form.password.label }}</p>
+                    {{ form.password(class="bar") }}
+                    {% if form.password.errors %}
+                        {% for error in form.password.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                </div>
+                <div class="container">
+                    <div class="container fRow m50">
+                        {{ form.remember_me(class="T-info wHalf mFrame") }}
+                        {{ form.remember_me.label(class="T-info w80") }}
+
+                    </div>
+                    <div class="container">
+                        {{form.submit(class="btn")}}</div>
+                       
+                    
+                    
+                </div>
+            </form>
+            
+            <div>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="err"> {{message}} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

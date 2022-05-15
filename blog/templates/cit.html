@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %} Citazioni {% endblock %}
+
+{% block content %}
+
+
+<div class="pagina" id="tutto">
+
+    <div class="box bWhite m50">
+        <div class="T-sez mFrame">WikiPres</div>
+    </div>
+    
+    <br><br><br><br><br><br><br><br><br><br>
+    {% for cit in cits.items %}
+        <div class="box fColR">
+
+            <p>{{ cit.created_at.strftime('%d.%m.%Y') }}</p>
+    
+            <p class="t-info tCent">{{cit.body}}</p>
+
+            <div class="container fRow w80 centX">
+                {% if current_user.is_authenticated and current_user == cit.author %}
+                    <form action="{{ url_for('cit_update', cit_id=cit.id) }}" method="POST">
+                        <input type="submit" value="Modifica" class="btn bAdd">
+                    </form>
+                    <div class="w10"></div>
+                    <form action="{{url_for('cit_delete', cit_id=cit.id)}}" method="POST">
+                        <input type="submit" value="Cancella" class="btn bDanger">
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %} 
+    
+    <div class="container wHalf m50">
+    {% if previous_page or next_page %}    
+        {% if previous_page %}
+            {% if current_page == 2 %} <a class="btn" href="/citazioni">Indietro</a><div class="btn bNoW">Avanti</div>
+            {% else %}} <a class="btn" href=" {{ previous_page }} ">Indietro</a><div class="btn bNoW">Avanti</div>{% endif %}
+        {% endif %}
+        {% if next_page %} <div class="btn bNoW">Indietro</div><a class="btn" href=" {{ next_page }} ">Avanti</a>{% endif %}
+    {% endif %}
+    </div>
+    
+    
+    <img id="firma" src="{{ url_for('static', filename='img/posts/proj-img/Marchio2.png') }}">
+</div>
+
+
+
+
+{% endblock %}

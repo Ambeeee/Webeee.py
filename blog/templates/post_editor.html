@@ -1,0 +1,281 @@
+{% extends'base.html' %}
+
+{% block title %}
+    {% if request.path == "/create-post" %}
+        Crea Articolo
+    {% elif request.path == "/create-folder" %}
+        Crea Album
+    {% elif request.path == "/create-cit" %}
+        Aggiungi Citazione
+    {% elif request.path == "/create-user" %}
+        Aggiungi Account
+    {% else %}
+        Modifica
+    {% endif %} (protetto) 
+{% endblock %}
+
+{% block content %}
+<div class="box bAmbe  fCol wHalf">
+    <h2 class="TitoloSez T-titolo">
+        {% if request.path == "/create-post" %}
+            Crea Un Nuovo Articolo
+        {% elif request.path == "/create-folder" %}
+            Crea Un Nuovo Album
+        {% elif request.path == "/create-cit" %}
+            Aggiungi Citazione
+        {% elif request.path == "/create-user" %}
+            Aggiungi Account
+        {% else %}
+            Modifica
+        {% endif %}
+    </h2>
+    <div>
+        <div>
+            <div> <!--ERRORI-->
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="T-err"> {{message}} </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <form method="POST" enctype="multipart/form-data" novalidate>
+                {{ form.hidden_tag() }} <!--csrf_token-->
+
+
+                <!--Titolo-->
+                {% if form.title and (current_user.role == "Boss" or current_user.role == "Writer") %}
+                <div class="container fCol">
+                    <p class="T-info">{{form.title.label}}</p>
+                    {{form.title(class="bar")}}
+                    {% if form.title.errors %}
+                        {% for error in form.title.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+
+                <!--Descrizione-->
+                {% if form.description and (current_user.role == "Boss" or current_user.role == "Writer") %}
+                <div class="container fCol">
+                    <p class="T-info">{{form.description.label}}</p>
+                    {{form.description(class="bar", rows=3)}}
+                    {% if form.description.errors %}
+                        {% for error in form.description.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+                
+                <!--Body-->
+                {% if form.body and (current_user.role == "Boss" or current_user.role == "Writer") %}
+                <div class="container fCol">
+                    <p class="T-info">{{ form.body.label }}</p>
+                    {% if request.path == "/create-cit" %}
+                        {{ form.body(class="bar", rows=2) }}
+                    {% else %}
+                        {{ form.body(class="bar", rows=6) }}
+                    {% endif %}
+                    {% if form.body.errors %}
+                        {% for error in form.body.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!--Testimonianza-->
+                {% if form.cit and (current_user.role == "Boss" or current_user.role == "Writer"
+                    or current_user.role == "Testimonial") %}
+                <div class="container fCol">
+                    <p class="T-info">{{ form.cit.label }}</p>
+                    {{ form.cit(class="bar", rows=8) }}
+                    {% if form.cit.errors %}
+                        {% for error in form.cit.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!--Media-->
+                {% if form.media and (current_user.role == "Boss" or current_user.role == "Writer") %}
+                    <div class="container fCol" onclick="morePhotos()" id="morePhotos">
+                        <p class="T-info">{{ form.media.label }}</p>
+                        <div class="container">{{ form.media(class="t-info") }}</div>
+                        
+                        {% if form.media.errors %}
+                            {% for error in form.media.errors %}
+                            <div class="T-err"> {{ error }} </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    {% if post_cover %}
+                    <img src=" {{url_for('static', filename='img/posts/' + post_media)}} " class="cover" alt="foto dell'articolo">
+                    {% endif %}
+                {% endif %}
+
+                <!--Body 2-->
+                {% if form.body2 and (current_user.role == "Boss" or current_user.role == "Writer") %}
+                <div id="b2" class="container fCol">
+                    <p class="T-info">{{ form.body2.label }}</p>
+                    {{ form.body2(class="bar", rows=6) }}
+                    {% if form.body2.errors %}
+                        {% for error in form.body2.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!--Testimonianza 2-->
+                {% if form.cit2 and (current_user.role == "Boss" or current_user.role == "Writer"
+                    or current_user.role == "Testimonial") %}
+                <div id="c2" class="container fCol">
+                    <p class="T-info">{{ form.cit2.label }}</p>
+                    {{ form.cit2(class="bar", rows=8) }}
+                    {% if form.cit2.errors %}
+                        {% for error in form.cit2.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!--Body 2-->
+                {% if form.body3 and (current_user.role == "Boss" or current_user.role == "Writer") %}
+                <div id="b3" class="container fCol">
+                    <p class="T-info">{{ form.body3.label }}</p>
+                    {{ form.body3(class="bar", rows=6) }}
+                    {% if form.body3.errors %}
+                        {% for error in form.body3.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!--Testimonianza 3-->
+                {% if form.cit3 and (current_user.role == "Boss" or current_user.role == "Writer"
+                    or current_user.role == "Testimonial") %}
+                <div id="c3" class="container fCol">
+                    <p class="T-info">{{ form.cit3.label }}</p>
+                    {{ form.cit3(class="bar", rows=8) }}
+                    {% if form.cit3.errors %}
+                        {% for error in form.cit3.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!--Body 4-->
+                {% if form.body4 and (current_user.role == "Boss" or current_user.role == "Writer") %}
+                <div id="b4" class="container fCol">
+                    <p class="T-info">{{ form.body4.label }}</p>
+                    {{ form.body4(class="bar", rows=6) }}
+                    {% if form.body4.errors %}
+                        {% for error in form.body4.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!--Body 5-->
+                {% if form.body5 and (current_user.role == "Boss" or current_user.role == "Writer") %}
+                <div id="b5" class="container fCol">
+                    <p class="T-info">{{ form.body5.label }}</p>
+                    {{ form.body5(class="bar", rows=6) }}
+                    {% if form.body5.errors %}
+                        {% for error in form.body5.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+                
+                
+                <!--Cover-->
+                {% if form.cover and (current_user.role == "Boss" or current_user.role == "Writer") %}
+                <div class="container fCol">
+                    <p class="T-info">{{ form.cover.label }}</p>
+                    <div class="container">{{ form.cover(class="t-info") }}</div>
+                    
+                    {% if form.cover.errors %}
+                        {% for error in form.cover.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                    {% if post_cover %}
+                    <img src=" {{url_for('static', filename='img/posts/' + post_cover)}} " class="cover" alt="foto dell'articolo">
+                    {% endif %}
+                {% endif %}
+                
+                
+
+
+                <!--Username-->
+                {% if form.username and current_user.role == "Boss" %}
+                <div class="container fCol">
+                    <p class="T-info">{{form.username.label}}</p>
+                    {{form.username(class="bar")}}
+                    {% if form.username.errors %}
+                        {% for error in form.username.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!--Email-->
+                {% if form.email and current_user.role == "Boss" %}
+                <div class="container fCol">
+                    <p class="T-info">{{form.email.label}}</p>
+                    {{form.email(class="bar")}}
+                    {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!--Ruolo-->
+                {% if form.role and current_user.role == "Boss" %}
+                <div class="container fCol">
+                    <p class="T-info">{{form.role.label}}</p>
+                    {{form.role(class="bar")}}
+                    {% if form.role.errors %}
+                        {% for error in form.role.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!--Password-->
+                {% if form.password and current_user.role == "Boss" %}
+                <div class="container fCol">
+                    <p class="T-info">{{form.password.label}}</p>
+                    {{form.password(class="bar")}}
+                    {% if form.password.errors %}
+                        {% for error in form.password.errors %}
+                        <div class="T-err"> {{ error }} </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!--Submit-->
+                <div class="container centX">{{ form.submit(class="btn bAdd") }}</div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

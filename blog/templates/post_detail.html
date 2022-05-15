@@ -1,0 +1,73 @@
+{% extends'base.html' %}
+
+{% block title %}{{ post.title }} - Webeee.py{% endblock %}
+
+{% block content %}
+<div id="tutto"> 
+
+    <img src=" {{ url_for('static', filename='img/posts/proj-img/marchio1.png') }} " alt="Mark - Top" class="Mark1 img-proj">
+
+    <h1 class="T-art" >{{post.title}}</h1>
+
+    <div class="art-infos w90">
+        <p class="date">🕑 {{ post.created_at.strftime('%d.%m.%Y') }}</p>
+        
+        
+        <div class="edit">
+            {% if current_user.is_authenticated and (current_user == post.author or current_user.role == 'Boss'
+                or current_user.role == 'Writer' or current_user.role == 'Testimonial') %}
+                <a href=" {{ url_for('post_update', post_id=post.id) }} " class="btn bAdd">Modifica</a>
+                <button type="button" class="btn bDanger" onclick="TogglePopup()">
+                    Cancella
+                </button>
+            {% endif %}
+            <a href=" /newsPres " class="btn">Altre News</a>
+        </div>
+        
+    </div>
+
+    
+    {% if post.description %}
+        <p class="intro-art w90">{{post.description}}</p>
+    {% endif %}
+
+    <div class="container w90 m50 " id="IlBodyDellArticolo">
+    <body-text>
+        {{post.body|markdown}}
+    </body-text>
+    </div>
+
+
+    {% if post.image %}
+    <img src=" {{ url_for('static', filename='img/posts/' + post.image) }} " alt="Copertina" class="cover">
+    {% endif %}
+    
+ 
+    <!--
+        IMMAGINI:   ![Alt dell'immagine](path "title")  
+        LINKS: [Testo del Link](path "title")   quick: <path>
+            (prova a sostituire gli spazi del path con %20)
+
+        Prova ad usare dei comunissimi tag html
+    -->
+
+</div>
+
+<div class="popup" id="eliminaPopup">
+    <div class="container fCol centX">
+        <p class="T-tab">Vuoi Cancellare?</p>
+        <div class="container centX ">
+            <form action="" id="cancel">
+                <input type="submit" value="No" class="btn">
+            </form>
+            <div class="w10"></div>
+            <form action="{{url_for('post_delete', post_id=post.id)}}" method="POST">
+                <input type="submit" value="Si, Cancella" class="btn bDanger">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    <img id="firma" src="{{ url_for('static', filename='img/posts/proj-img/Marchio2.png') }}">
+{% endblock %}  

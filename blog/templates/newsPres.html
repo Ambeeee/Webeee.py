@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} News/Pres {% endblock %}
+
+{% block content %}
+
+<img class="sfondo" src="{{ url_for('static', filename='img/posts/enq3se-SfondoPres.png') }}" alt="Sfondo">
+<div class="pagina pSfondo">
+    <div class="intro">
+        <p>
+            Alessandro Flavio Ridolfi è un imprenditore originario della metropoli di Baiano.  
+            Dopo epiche imprese è riuscito a diventare Presidente, guadagnandosi la stima dei suoi compagni.
+            E' il principe del business e il DeepWeb non ha segreti per lui, è stato il primo magnate a
+            credere nelle criptovalute, che ha minato a fianco di altre figure illustri del calibro di Elon Musk fino
+            a due anni fa, quando ha radunato le menti più brillanti della Terra con le quali opera per
+            abbattere le frontiere dell'innovazione, all'interno del Bunker più grande e all'avanguardia
+            del mondo.
+        </p>
+    </div>
+
+    {% for post in posts.items %}
+        <a href="{{url_for('post_detail', post_slug=post.slug) }}" class="box hoverable">
+            <div class="testo" style="margin: 0% 8%;">
+                <div class="T-tab">{{post.title}}</div>
+
+                <p>{{ post.created_at.strftime('%d.%m.%Y') }}</p>
+        
+                {% if post.description %}
+                    <p class="t-info">{{post.description}}</p>
+                {%endif%}
+            </div>
+            <div class="newsImg">
+                {% if post.image %}
+                    <img src=" {{ url_for('static', filename='img/posts/' + post.image) }} " alt="Copertina" class="cover">
+                {% endif %}
+            </div>
+        </a>
+    {% endfor %} 
+    
+    <div class="container wHalf m50">
+    {% if previous_page or next_page %}    
+        {% if previous_page %}
+            {% if current_page == 2 %} <a class="btn" href="/newsPres">Indietro</a><div class="btn bNoW">Avanti</div>
+            {% else %}} <a class="btn" href=" {{ previous_page }} ">Indietro</a><div class="btn bNoW">Avanti</div>{% endif %}
+        {% endif %}
+        {% if next_page %} <div class="btn bNoW">Indietro</div><a class="btn" href=" {{ next_page }} ">Avanti</a>{% endif %}
+    {% endif %}
+    </div>
+</div> 
+
+<img id="firma" src="{{ url_for('static', filename='img/posts/proj-img/Marchio2.png') }}">
+{% endblock %}
