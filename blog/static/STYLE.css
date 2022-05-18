@@ -37,6 +37,9 @@
 .img-proj{
     filter: brightness(var(--Light));
 }
+#loading{
+    display: flex;
+}
 
 
 

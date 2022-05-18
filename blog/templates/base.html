@@ -21,30 +21,36 @@
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 
 </head>
-<body class="body">
-    
-    <!--MENU-->
-    <div class="menuSec">
-        <img src="{{ url_for('static', filename='img/posts/proj-img/logo.png') }}"
-            id="logo" class="img-proj" type="image/png" title="Apri il menu" onclick="ApriMenu()" ondblclick="DM()" ondrag="login()">
+<body class="body" id="body">
+    <div class="loaded dNone" id="loaded">
+        <!--MENU-->
+        <div class="menuSec">
+            <img src="{{ url_for('static', filename='img/posts/proj-img/logo.png') }}"
+                id="logo" class="img-proj" type="image/png" title="Apri il menu" onclick="ApriMenu()" ondrag="login()"
+                ondblclick="DM()">
 
-        <div id="menu" style="display: none">
-            <a href="{{ url_for('homepage') }}" class="tab {% if request.path == '/' %} active {% endif%}" title="torna alla pagina iniziale">Home</a>
+            <div id="menu" style="display: none">
+                <a href="{{ url_for('homepage') }}" class="tab {% if request.path == '/' %} active {% endif%}" title="torna alla pagina iniziale">Home</a>
 
-            <a href="{{ url_for('newsPres') }}" class="tab {% if request.path == '/newsPres' %} active {% endif%}" title="vai alle notizie">News</a>
+                <a href="{{ url_for('newsPres') }}" class="tab {% if request.path == '/newsPres' %} active {% endif%}" title="vai alle notizie">News</a>
 
-            <a href="{{ url_for('gallery') }}" class="tab {% if request.path == '/gallery' %} active {% endif%}" title="vai alla gallery">Gallery</a>
+                <a href="{{ url_for('gallery') }}" class="tab {% if request.path == '/gallery' %} active {% endif%}" title="vai alla gallery">Gallery</a>
 
-            <a href="{{ url_for('cit') }}" class="tab {% if request.path == '/citazioni' %} active {% endif%}" title="Scopri le perle">WikiPres</a>
+                <a href="{{ url_for('cit') }}" class="tab {% if request.path == '/citazioni' %} active {% endif%}" title="Scopri le perle">WikiPres</a>
 
-            {% if current_user.is_authenticated %}
-            <a href="{{ url_for('crea') }}" class="tab{% if request.path == '/crea' %} active {% endif%}" title="crea qualcosa">Crea</a>
-            <a href="{{ url_for('logout') }}" class="tab {% if request.path == '/logout' %} active {% endif%}" title="effettua il Logout">Logout</a>
-            {% endif %}
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('crea') }}" class="tab{% if request.path == '/crea' %} active {% endif%}" title="crea qualcosa">Crea</a>
+                <a href="{{ url_for('logout') }}" class="tab {% if request.path == '/logout' %} active {% endif%}" title="effettua il Logout">Logout</a>
+                {% endif %}
+            </div>
         </div>
+
+        {% block content %}{% endblock %}
     </div>
 
-    {% block content %}{% endblock %}
+    <div class="loading" id="loading">
+        aoo
+    </div>
 
 </body>
 </html>

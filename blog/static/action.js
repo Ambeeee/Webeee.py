@@ -1,8 +1,11 @@
 //DEFAULTS
 window.onload = function(){
+    var loaded = document.getElementById('loaded')
+    var loading = document.getElementById('loading')
     var popup = document.getElementById('eliminaPopup')
+    loaded.classList.toggle('dNone')
+    loading.style.display = 'none'
     popup.classList.toggle('dNone')
-    
 }
 
 
@@ -50,6 +53,3 @@ function TogglePopup(){
     }
 }
 
-function scopri(element){
-    element.style.display = 'flex'
-}
